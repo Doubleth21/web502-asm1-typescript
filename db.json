@@ -20,6 +20,20 @@
       "credit": 3,
       "category": "Cơ sở",
       "teacher": "Lê Văn C"
+    },
+    {
+      "name": "laptop",
+      "credit": 3,
+      "category": "cơ sở",
+      "teacher": "mai quang huy",
+      "id": 4
+    },
+    {
+      "name": "macbook",
+      "credit": 2,
+      "category": "dữ liệu",
+      "teacher": "mai quang huy",
+      "id": 5
     }
   ]
 }
