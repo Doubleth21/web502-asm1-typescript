@@ -1,5 +1,8 @@
 import { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
+import ListPage from "./pages/List";
+import AddPage from "./pages/Add";
+import EditPage from "./pages/Edit";
 
 function App() {
   return (
@@ -34,8 +37,20 @@ function App() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-6xl mx-auto mt-10 px-4 text-center">
-        <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB502</h1>
+      <div className="max-w-6xl mx-auto mt-10 px-4">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB502</h1>
+              </div>
+            }
+          />
+          <Route path="/products" element={<ListPage />} />
+          <Route path="/products/add" element={<AddPage />} />
+          <Route path="/products/edit/:id" element={<EditPage />} />
+        </Routes>
       </div>
 
       <Toaster />
