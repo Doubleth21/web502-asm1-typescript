@@ -3,6 +3,8 @@ import { Link, Routes, Route } from "react-router-dom";
 import ListPage from "./pages/List";
 import AddPage from "./pages/Add";
 import EditPage from "./pages/Edit";
+import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
           <Route path="/products" element={<ListPage />} />
           <Route path="/products/add" element={<AddPage />} />
           <Route path="/products/edit/:id" element={<EditPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
 

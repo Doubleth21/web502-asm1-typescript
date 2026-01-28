@@ -1,39 +1,45 @@
 {
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "name": "ReactJS Cơ Bản",
       "credit": 3,
       "category": "Chuyên ngành",
       "teacher": "Nguyễn Văn A"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "TypeScript",
       "credit": 2,
       "category": "Chuyên ngành",
       "teacher": "Trần Thị B"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Cấu trúc dữ liệu",
       "credit": 3,
       "category": "Cơ sở",
       "teacher": "Lê Văn C"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "name": "Admin User"
     },
     {
-      "name": "laptop",
-      "credit": 3,
-      "category": "cơ sở",
-      "teacher": "mai quang huy",
-      "id": 4
+      "id": "2",
+      "email": "test@example.com",
+      "password": "test123",
+      "name": "Test User"
     },
     {
-      "name": "macbook",
-      "credit": 2,
-      "category": "dữ liệu",
-      "teacher": "mai quang huy",
-      "id": 5
+      "id": "85ed",
+      "email": "toan1@gmail.com",
+      "password": "123456",
+      "name": "do khanh toan"
     }
   ]
 }
