@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 type LoginForm = {
   email: string
@@ -23,7 +24,7 @@ const LoginPage: React.FC = () => {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setSuccess('')
@@ -37,18 +38,26 @@ const LoginPage: React.FC = () => {
       return
     }
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]') as User[]
-    const user = users.find((u) => u.email === form.email && u.password === form.password)
-    if (!user) {
-      setError('Thông tin đăng nhập không chính xác.')
-      return
+    try {
+      const base = 'http://localhost:3000'
+      const resp = await axios.get<User[]>(`${base}/users`, { params: { email: form.email, password: form.password } })
+      const user = resp.data && resp.data.length ? resp.data[0] : null
+      if (!user) {
+        setError('Thông tin đăng nhập không chính xác.')
+        return
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify({ id: user.id, name: user.name, email: user.email }))
+      window.dispatchEvent(new Event('auth'))
+      setSuccess('Đăng nhập thành công.')
+      setForm({ email: '', password: '' })
+    } 
+  
+    catch (err) {
+      console.error(err)
+      setError('Đã có lỗi xảy ra. Vui lòng thử lại.')
     }
-
-    localStorage.setItem('currentUser', JSON.stringify({ id: user.id, name: user.name, email: user.email }))
-    setSuccess('Đăng nhập thành công.')
-    setForm({ email: '', password: '' })
   }
-
   return (
     <div style={{ maxWidth: 480, margin: '24px auto', padding: 16 }}>
       <h2>Đăng nhập</h2>

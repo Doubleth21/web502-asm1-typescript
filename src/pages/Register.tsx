@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 type Form = {
   name: string
@@ -35,18 +36,32 @@ const RegisterPage: React.FC = () => {
     return Object.keys(errs).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSuccess('')
     if (!validate()) return
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]') as User[]
-    users.push({ id: Date.now(), name: form.name, email: form.email, password: form.password })
-    localStorage.setItem('users', JSON.stringify(users))
+    try {
+      const base = 'http://localhost:3000'
+      const { data: existing } = await axios.get<User[]>(`${base}/users`, { params: { email: form.email } })
+      if (existing && existing.length > 0) {
+        setErrors({ email: 'Email đã được sử dụng.' })
+        return
+      }
 
-    setSuccess('Đăng ký thành công. Bạn có thể đăng nhập bây giờ.')
-    setForm({ name: '', email: '', password: '', confirm: '' })
-    setErrors({})
+      await axios.post(`${base}/users`, {
+        name: form.name,
+        email: form.email,
+        password: form.password
+      })
+
+      setSuccess('Đăng ký thành công. Bạn có thể đăng nhập bây giờ.')
+      setForm({ name: '', email: '', password: '', confirm: '' })
+      setErrors({})
+    } catch (err) {
+      console.error(err)
+      setErrors({ general: 'Đã có lỗi xảy ra. Vui lòng thử lại.' })
+    }
   }
 
   return (

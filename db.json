@@ -40,6 +40,12 @@
       "email": "toan1@gmail.com",
       "password": "123456",
       "name": "do khanh toan"
+    },
+    {
+      "email": "tung1@gmail.com",
+      "password": "$2a$10$nNUqwmrx3BW.3f5nh6sCqOytp.U4W2PpHr41v5t1qWB8n3XRUIb.a",
+      "name": "quang tung",
+      "id": "1A1elQH"
     }
   ]
 }
